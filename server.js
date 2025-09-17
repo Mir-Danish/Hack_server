@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-// import connectDB from "./config/db";
+import connectDB from "./config/db.js";
 import authRoute from './routes/UserRoute.js'
 
 const app = express();
@@ -12,9 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use("/api/auth",authRoute)
 
-app.use("/api/auth/register",authRoute)
-
+// app.use("/api/all-users",authRoute)
 
 
 app.get("/", (req, res) => {
@@ -24,5 +24,5 @@ app.get("/", (req, res) => {
 
 app.listen(PORT,async()=>{
     console.log(`Server is running on port http://localhost:${PORT}`);
-    //await connectDB();
+    await connectDB();
 })

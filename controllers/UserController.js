@@ -1,4 +1,4 @@
-import User from "../model/User";
+import User from "../model/User.js";
 
 export const registerController = async(req, res) => {
     try {
@@ -18,3 +18,15 @@ export const registerController = async(req, res) => {
         res.status(500).json({message:"Error in registering user"})
     }
 }
+
+
+
+
+export const getAllUsers = async(req,res) =>{
+    try {
+        const users = await User.find({}); //Fetch Allusers in the db
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({message:"Error in fetching users"})
+    }
+};
